@@ -1,0 +1,26 @@
+package com.ly;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class GetStudentData {
+
+	public static void main(String[] args) throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myjdbc", "root",
+				"Sidhartha@1200");
+		PreparedStatement preparedStatement=connection.prepareStatement("select * from student");
+		ResultSet resultSet =preparedStatement.executeQuery();
+		while(resultSet.next()) {
+		String name1=resultSet.getString("name");
+		String phno1=resultSet.getString("phno");
+		String email1=resultSet.getString("email");
+		String password1=resultSet.getString("password");
+		System.out.println("Name: "+name1+" Phno: "+phno1+" Email: "+email1+" Password: "+password1);
+		}
+
+	}
+
+}
